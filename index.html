@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    #gameDiv{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        ;
+        height: 300px;
+        width: 500px;
+        border: 4px solid;
+        align-items: center;
+        padding: 10px;
+        background-color: rgb(163, 199, 230);
+        text-align: center;
+    }
+    .choiceBtn{
+        line-height: 40px;
+        width: 100px;
+        border-radius: 30px;
+        border: 3px solid;
+        color: rgb(21, 1, 1);
+        background-color: antiquewhite;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    #playerText{
+        color: rgb(128, 32, 75);
+    
+    }
+    #computerText{
+        color: rgb(232, 68, 19);
+    }</style>
+<body>
+    <div id="gameDiv">
+        <h1 class="gameText" id="playerText">PLAYER</h1>
+        <h1 class="gameText" id="computerText">COMPUTER</h1>
+        <h1 class="gameText" id="resultText"></h1>
+
+        <button class="choiceBtn">ROCK</button>
+        <button class="choiceBtn">PAPER</button>
+        <button class="choiceBtn">SCISSOR</button>
+    </div>
+</body>
+<script>const playerText=document.querySelector("#playerText");
+    const computerText=document.querySelector("#computerText");
+    const resultText=document.querySelector("#resultText");
+    const choiceBtn=document.querySelectorAll(".choiceBtn");
+    let player;
+    let computer;
+    let result;
+    
+    
+    choiceBtn.forEach(button=>button.addEventListener("click",()=>{
+        player=button.textContent.toLowerCase();
+        computerTurn();
+        playerText.textContent=`PLAYER :  ${player}`;
+        computerText.textContent=`COMPUTER :  ${computer}`;
+        resultText.textContent=checkWinner();
+    }));
+    function  computerTurn(){
+        const randNum=Math.floor(Math.random()*3)+1;
+    
+        switch(randNum){
+            case 1:
+                computer="rock";
+                break;
+            case 2:
+                computer="paper";
+                break;
+            case 3:
+                computer="scissor";
+                break;
+        }
+    }
+    function checkWinner(){
+        if(player==computer){
+            return "Draw!";
+        }
+        else if(computer =="rock"){
+            return (player=="paper") ? "YOU WIN!":"YOU LOSE!"
+        }
+        else if(computer =="paper"){
+            return (player=="scissor") ? "YOU WIN!":"YOU LOSE!"
+        }
+        else if(computer =="scissor"){
+            return (player=="rock") ? "YOU WIN!":"YOU LOSE!"
+        }
+    }</script>
+</html>
